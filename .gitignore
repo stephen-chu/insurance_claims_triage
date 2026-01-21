@@ -7,3 +7,4 @@ __pycache__/
 
 # Results are generated
 results/*.json
+processed_claims.json
