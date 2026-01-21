@@ -8,21 +8,16 @@ from subagents.damage_assessor import DAMAGE_ASSESSOR_SYSTEM_PROMPT, DAMAGE_ASSE
 from subagents.fraud_detector import FRAUD_DETECTOR_SYSTEM_PROMPT, FRAUD_DETECTOR_TOOLS
 from subagents.policy_verifier import POLICY_VERIFIER_SYSTEM_PROMPT, POLICY_VERIFIER_TOOLS
 
-SYSTEM_PROMPT = """You are an ambient insurance claims triage agent that automatically processes pending claims.
+SYSTEM_PROMPT = """You are an insurance claims triage agent. You receive a claim and must analyze it.
 
-On each run:
-1. Call get_pending_claims to fetch unprocessed claims
-2. For EACH pending claim, call ALL THREE subagents in ONE response (parallel execution):
+1. Call ALL THREE subagents in ONE response (parallel execution):
    - damage-assessor: ALL photo URLs as a list, damage_type
    - fraud-detector: claimant name
    - policy-verifier: policy_id, claim_type
-3. Call submit_decision with claim_id and your decision:
+2. Call submit_decision with claim_id and your decision:
    - AUTO-APPROVE: Low risk, covered, reasonable amount
    - DENY: Not covered or policy issue
-   - MANUAL REVIEW: High fraud risk or edge cases
-4. Call mark_claim_processed for each completed claim
-
-If no pending claims, respond that the queue is empty."""
+   - MANUAL REVIEW: High fraud risk or edge cases"""
 
 # Create the graph for LangGraph Cloud
 graph = create_deep_agent(
