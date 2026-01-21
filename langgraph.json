@@ -4,5 +4,5 @@
     "triage": "./graph.py:graph"
   },
   "env": ".env",
-  "dependencies": ["./requirements.txt"]
+  "dependencies": ["."]
 }
