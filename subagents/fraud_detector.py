@@ -4,13 +4,13 @@ import json
 from pathlib import Path
 from typing import Annotated
 
-DB = Path(__file__).parent.parent / "db"
+DATA = Path(__file__).parent.parent / "data"
 
 
 def check_history(claimant: Annotated[str, "Claimant name"]) -> str:
     """Check claimant's claim history and fraud indicators."""
     print(f"    [fraud-detector] Checking history for: {claimant}")
-    data = json.loads((DB / "claimants.json").read_text()) if (DB / "claimants.json").exists() else {}
+    data = json.loads((DATA / "claimants.json").read_text()) if (DATA / "claimants.json").exists() else {}
     record = data.get(claimant)
 
     if not record:

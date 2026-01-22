@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Annotated
 
-DB = Path(__file__).parent.parent / "db"
+DATA = Path(__file__).parent.parent / "data"
 
 
 def verify_coverage(
@@ -13,7 +13,7 @@ def verify_coverage(
 ) -> str:
     """Check if policy covers the claim type."""
     print(f"    [policy-verifier] Checking coverage for: {policy_id}")
-    data = json.loads((DB / "policies.json").read_text()) if (DB / "policies.json").exists() else {}
+    data = json.loads((DATA / "policies.json").read_text()) if (DATA / "policies.json").exists() else {}
     policy = data.get(policy_id)
 
     if not policy:
